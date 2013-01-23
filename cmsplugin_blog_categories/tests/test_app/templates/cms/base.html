@@ -1,4 +1,13 @@
-{% load sekizai_tags %}
+{% load sekizai_tags cmsplugin_blog_tags cmsplugin_blog_categories_tags %}
+
 {% render_block "css" %}
+
 {% block main %}{% endblock %}
+
+{% block left-col %}{% endblock %}
+
+{% block right-col %}
+{% render_category_links %}
+{% endblock %}
+
 {% render_block "js" %}

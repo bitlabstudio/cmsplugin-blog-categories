@@ -2,7 +2,7 @@
 <ul>
     {% for category in categories %}
         {% with category|get_preferred_translation_from_request:request as title %}
-        <li>{{ title.title }}</li>
+        <li><a href="{{ category.get_absolute_url }}">{{ title.title }}</a></li>
         {% endwith %}
     {% endfor %}
 </ul>

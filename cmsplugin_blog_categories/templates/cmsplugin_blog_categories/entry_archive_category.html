@@ -1,0 +1,19 @@
+{% extends "cmsplugin_blog/cmsplugin_blog_base.html" %}
+{% load i18n cmsplugin_blog_tags simple_translation_tags %}
+
+{% block left-col %}
+{{ block.super }}
+
+{% with category|get_preferred_translation_from_request:request as category_title %}
+<h1>{% trans "Entries for category: " %} {{ category_title.title }}</h1>
+{% endwith %}
+
+{% with entries as object_list %}
+{% if object_list %}
+   {% include "cmsplugin_blog/entry_list_include.html" %}
+{% else %}
+	<p>{% trans "No entries" %}</p>
+{% endif %}
+{% endwith %}
+
+{% endblock %}
