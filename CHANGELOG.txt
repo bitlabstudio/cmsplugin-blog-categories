@@ -1,5 +1,7 @@
 === ongoing ===
 
+=== 0.2 ===
+
 - Only show entries available in the current language on category list view
   (similar to the blog's original entry archive index view)
 
