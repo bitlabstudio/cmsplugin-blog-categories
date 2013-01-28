@@ -1,5 +1,7 @@
 === ongoing ===
 
+- Fixed wrong URL inclusion of original cmsplugin-blog URLs
+
 === 0.2 ===
 
 - Only show entries available in the current language on category list view

@@ -10,5 +10,5 @@ urlpatterns = patterns(
         CategoryListView.as_view(),
         name='blog_archive_category',),
 
-    url(r'^/', include('cmsplugin_blog.urls')),
+    url(r'^', include('cmsplugin_blog.urls')),
 )
