@@ -1,5 +1,7 @@
 === ongoing ===
 
+=== 0.2.1 ===
+
 - Fixed wrong URL inclusion of original cmsplugin-blog URLs
 
 === 0.2 ===
