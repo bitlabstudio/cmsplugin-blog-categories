@@ -38,7 +38,31 @@ Apphook`.
 Usage
 -----
 
-TODO: Describe usage
+This app includes all URLs of the original cmsplugin-blog, so if you were not
+using an apphook but hooked the URLs into your main ``urls.py`` manually,
+you should hook this app's ``urls.py`` instead.
+
+
+Display the category of an entry
+++++++++++++++++++++++++++++++++
+
+In order to display an entry's category, do the following::
+
+    {% load cmsplugin_blog_categories_tags %}
+    {% get_category entry as category %}
+    Category:<a href="{{ category.get_absolute_url }}">{{ category.get_title }}</a>
+
+
+Display a list of all categories
+++++++++++++++++++++++++++++++++
+
+In order to display a list of all available categories, do the following::
+
+    {% load cmsplugin_blog_categories_tags %}
+    {% render_category_links %}
+
+If you want to control the output of that tag, override the template
+`cmsplugin_blog_categories/category_links_snippet.html <https://github.com/bitmazk/cmsplugin-blog-categories/blob/master/cmsplugin_blog_categories/templates/cmsplugin_blog_categories/category_links_snippet.html>`_
 
 
 Contribute
