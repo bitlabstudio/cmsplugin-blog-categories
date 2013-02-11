@@ -1,5 +1,7 @@
 === ongoing ===
 
+=== 0.3.1 ===
+
 - Added better way to extend the EntryAdmin
 
 === 0.3 ===
