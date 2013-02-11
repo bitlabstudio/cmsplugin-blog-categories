@@ -59,7 +59,10 @@ Display a list of all categories
 In order to display a list of all available categories, do the following::
 
     {% load cmsplugin_blog_categories_tags %}
-    {% render_category_links %}
+    {% render_category_links exclude_empty=1 %}
+
+Use the ``exclude_empty`` parameter if you want to show only those categories
+that have posts.
 
 If you want to control the output of that tag, override the template
 `cmsplugin_blog_categories/category_links_snippet.html <https://github.com/bitmazk/cmsplugin-blog-categories/blob/master/cmsplugin_blog_categories/templates/cmsplugin_blog_categories/category_links_snippet.html>`_
