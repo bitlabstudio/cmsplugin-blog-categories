@@ -16,10 +16,6 @@ class EntryCategoryInline(admin.TabularInline):
     max_num = 1
 
 
-class CustomEntryAdmin(EntryAdmin):
-    inlines = [EntryCategoryInline, ]
-
-
 class EntryCategoryAdmin(admin.ModelAdmin):
     list_display = ['entry_title', 'category_title', ]
 
@@ -45,7 +41,9 @@ class CategoryAdmin(TranslationAdmin):
     title.short_description = _('Title')
 
 
+# Enhance original EntryAdmin
+EntryAdmin.inlines = EntryAdmin.inlines[:] + [EntryCategoryInline]
+
+# Register our own admins
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(EntryCategory, EntryCategoryAdmin)
-admin.site.unregister(Entry)
-admin.site.register(Entry, CustomEntryAdmin)

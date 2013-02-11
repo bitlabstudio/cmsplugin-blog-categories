@@ -1,5 +1,7 @@
 === ongoing ===
 
+- Added better way to extend the EntryAdmin
+
 === 0.3 ===
 
 - render_category_links tag now accepts exclude_empty parameter

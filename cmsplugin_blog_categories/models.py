@@ -46,7 +46,10 @@ class CategoryTitle(models.Model):
 
 class EntryCategory(models.Model):
     """Model that extends the ``Entry`` model of cmsplugin-blog."""
-    entry = models.ForeignKey('cmsplugin_blog.Entry')
+    entry = models.ForeignKey(
+        'cmsplugin_blog.Entry',
+        related_name='categories',
+    )
     category = models.ForeignKey(Category)
 
     class Meta:
