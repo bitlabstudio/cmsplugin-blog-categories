@@ -1,5 +1,7 @@
 === ongoing ===
 
+=== 0.3 ===
+
 - render_category_links tag now accepts exclude_empty parameter
 - you can display the number of posts in a category in the template by using
   category.num_posts
