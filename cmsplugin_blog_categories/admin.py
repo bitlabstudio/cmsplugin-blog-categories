@@ -4,7 +4,6 @@ from django.utils.translation import get_language
 from django.utils.translation import ugettext_lazy as _
 
 from cmsplugin_blog.admin import EntryAdmin
-from cmsplugin_blog.models import Entry
 from simple_translation.admin import TranslationAdmin
 from simple_translation.utils import get_translation_queryset
 
