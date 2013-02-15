@@ -3,6 +3,7 @@ from django.db import models
 from django.utils.translation import get_language
 from django.utils.translation import ugettext_lazy as _
 
+from cms.models import CMSPlugin
 from simple_translation.utils import get_translation_queryset
 
 
@@ -50,7 +51,11 @@ class EntryCategory(models.Model):
         'cmsplugin_blog.Entry',
         related_name='categories',
     )
-    category = models.ForeignKey(Category)
+    category = models.ForeignKey(Category, related_name='entry_categories')
 
     class Meta:
         unique_together = ('entry', 'category', )
+
+
+class CategoryPlugin(CMSPlugin):
+    category = models.ForeignKey(Category)

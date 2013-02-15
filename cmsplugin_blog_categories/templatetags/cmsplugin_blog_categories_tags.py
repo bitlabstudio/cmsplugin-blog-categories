@@ -18,7 +18,7 @@ def get_category(entry):
     takes_context=True)
 def render_category_links(context, exclude_empty=False):
     """Renders a list of all categories in the database."""
-    qs = Category.objects.annotate(num_posts=Count('entrycategory'))
+    qs = Category.objects.annotate(num_posts=Count('entry_categories'))
     if exclude_empty:
         qs = qs.exclude(num_posts=0)
     context.update({'categories': qs, })
