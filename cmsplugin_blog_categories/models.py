@@ -50,12 +50,21 @@ class EntryCategory(models.Model):
     entry = models.ForeignKey(
         'cmsplugin_blog.Entry',
         related_name='categories',
+        verbose_name=_('Entry'),
     )
-    category = models.ForeignKey(Category, related_name='entry_categories')
+    category = models.ForeignKey(
+        Category,
+        related_name='entry_categories',
+        verbose_name=_('Category'),
+    )
 
     class Meta:
         unique_together = ('entry', 'category', )
 
 
 class CategoryPlugin(CMSPlugin):
-    category = models.ForeignKey(Category)
+    """Plugin, which renders entries belonging to one category."""
+    category = models.ForeignKey(
+        Category,
+        verbose_name=_('Category'),
+    )
