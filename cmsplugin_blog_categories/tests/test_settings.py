@@ -28,14 +28,6 @@ TEMPLATE_DIRS = (
     os.path.join(os.path.dirname(__file__), '../templates'),
 )
 
-COVERAGE_REPORT_HTML_OUTPUT_DIR = os.path.join(
-    os.path.dirname(__file__), 'coverage')
-
-COVERAGE_MODULE_EXCLUDES = [
-    'tests$', 'settings$', 'urls$', 'locale$',
-    'migrations', 'fixtures', 'admin$', 'django_extensions',
-]
-
 # Settings needed to test a multilingual blog
 LANGUAGE_CODE = 'en-us'
 LANGUAGES = [
@@ -65,18 +57,22 @@ EXTERNAL_APPS = [
     'django.contrib.sites',
 
     # cms related apps
-    'cms',
     'sekizai',
     'mptt',
     'menus',
     'cms.plugins.text',
 
     # blog related apps
-    'cmsplugin_blog',
     'djangocms_utils',
     'simple_translation',
     'tagging',
     'missing',
+]
+
+COVERAGE_APPS = [
+    # Needed to include cmsplugin_blog_categories, due to their relations
+    'cms',
+    'cmsplugin_blog',
 ]
 
 INTERNAL_APPS = [
@@ -85,9 +81,15 @@ INTERNAL_APPS = [
     'cmsplugin_blog_categories',
 ]
 
-INSTALLED_APPS = EXTERNAL_APPS + INTERNAL_APPS
+INSTALLED_APPS = EXTERNAL_APPS + INTERNAL_APPS + COVERAGE_APPS
 
-COVERAGE_MODULE_EXCLUDES += EXTERNAL_APPS
+COVERAGE_REPORT_HTML_OUTPUT_DIR = os.path.join(
+    os.path.dirname(__file__), 'coverage')
+
+COVERAGE_MODULE_EXCLUDES = EXTERNAL_APPS + [
+    'tests$', 'settings$', 'urls$', 'locale$',
+    'migrations', 'fixtures', 'admin$', 'django_extensions',
+]
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.common.CommonMiddleware',

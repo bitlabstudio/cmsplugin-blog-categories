@@ -3,7 +3,10 @@ from django.test import TestCase
 
 from django_libs.tests.mixins import ViewTestMixin
 
-from cmsplugin_blog_categories.tests.factories import CategoryTitleENFactory
+from cmsplugin_blog_categories.tests.factories import (
+    CategoryTitleENFactory,
+    EntryFactory,
+)
 
 
 class CategoryListViewTestCase(ViewTestMixin, TestCase):
@@ -11,6 +14,7 @@ class CategoryListViewTestCase(ViewTestMixin, TestCase):
     def setUp(self):
         self.category_title = CategoryTitleENFactory()
         self.category = self.category_title.category
+        self.entry = EntryFactory()
 
     def get_view_name(self):
         return 'blog_archive_category'
@@ -19,4 +23,4 @@ class CategoryListViewTestCase(ViewTestMixin, TestCase):
         return {'category': self.category.slug}
 
     def test_view(self):
-        pass
+        self.should_be_callable_when_anonymous()

@@ -9,8 +9,13 @@ register = template.Library()
 
 
 @register.assignment_tag
-def get_category(entry):
-    return EntryCategory.objects.get(entry=entry).category
+def get_category(entry=None):
+    if entry:
+        try:
+            return EntryCategory.objects.get(entry=entry).category
+        except EntryCategory.DoesNotExist:
+            pass
+    return None
 
 
 @register.inclusion_tag(

@@ -25,7 +25,21 @@ class CategoryTitleFactoryBase(factory.Factory):
 
 class CategoryTitleENFactory(CategoryTitleFactoryBase):
     """Factory for english ``CategoryTitle`` objects."""
-    title = factory.LazyAttribute(lambda a: 'title-{0}'.format(a))
+    title = 'Category Title'
+    language = 'en-us'
+
+
+class CategoryTitleCNFactory(CategoryTitleFactoryBase):
+    """Factory for chinese ``CategoryTitle`` objects."""
+    title = unichr(34900)
+    language = 'zh-cn'
+
+
+class CategoryPluginFactory(factory.Factory):
+    """Base factory for factories for ``CategoryPlugin`` models."""
+    FACTORY_FOR = models.CategoryPlugin
+
+    category = factory.SubFactory(CategoryFactory)
 
 
 class EntryFactory(factory.Factory):
@@ -46,5 +60,5 @@ class EntryCategoryFactory(factory.Factory):
     """Base factory for factories for ``EntryCategory`` models."""
     FACTORY_FOR = models.EntryCategory
 
-    category = factory.SubFactory(CategoryTitleENFactory)
+    category = factory.SubFactory(CategoryFactory)
     entry = factory.SubFactory(EntryFactory)
