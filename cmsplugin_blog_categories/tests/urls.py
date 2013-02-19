@@ -14,5 +14,6 @@ admin.autodiscover()
 urlpatterns = patterns(
     '',
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^blog/', include('cmsplugin_blog_categories.urls')),
     url(r'^', include('cms.urls')),
 )

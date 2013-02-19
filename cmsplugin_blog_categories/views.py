@@ -1,9 +1,7 @@
 """Views of the ``cmsplugin_blog_categories`` app."""
 from django.views.generic import ListView
 
-from cmsplugin_blog.models import Entry
 from cmsplugin_blog_categories.models import Category
-from simple_translation.middleware import filter_queryset_language
 
 
 class CategoryListView(ListView):
@@ -21,6 +19,6 @@ class CategoryListView(ListView):
         return ctx
 
     def get_queryset(self):
-        qs = Entry.objects.filter(entrycategory__category=self.category)
-        qs = filter_queryset_language(self.request, qs)
-        return qs
+        return [category.entry for category
+                in self.category.entry_categories.all()
+                if category.entry.is_published]

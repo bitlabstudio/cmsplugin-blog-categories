@@ -20,14 +20,20 @@ class EntryCategoryAdmin(admin.ModelAdmin):
 
     def category_title(self, obj):
         lang = get_language()
-        return get_translation_queryset(obj.category).filter(
-            language=lang)[0].title
+        try:
+            return get_translation_queryset(obj.category).filter(
+                language=lang)[0].title
+        except IndexError:
+            return 'None'
     category_title.short_description = _('Category')
 
     def entry_title(self, obj):
         lang = get_language()
-        return get_translation_queryset(obj.entry).filter(
-            language=lang)[0].title
+        try:
+            return get_translation_queryset(obj.entry).filter(
+                language=lang)[0].title
+        except IndexError:
+            return 'None'
     entry_title.short_description = _('Entry title')
 
 
@@ -36,7 +42,10 @@ class CategoryAdmin(TranslationAdmin):
 
     def title(self, obj):
         lang = get_language()
-        return get_translation_queryset(obj).filter(language=lang)[0].title
+        try:
+            return get_translation_queryset(obj).filter(language=lang)[0].title
+        except IndexError:
+            return 'None'
     title.short_description = _('Title')
 
 

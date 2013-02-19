@@ -31,7 +31,11 @@ class Category(models.Model):
 
     def get_title(self):
         lang = get_language()
-        return get_translation_queryset(self).filter(language=lang)[0].title
+        try:
+            return get_translation_queryset(self).filter(
+                language=lang)[0].title
+        except IndexError:
+            return 'None'
 
 
 class CategoryTitle(models.Model):

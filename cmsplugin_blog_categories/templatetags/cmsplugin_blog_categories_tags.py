@@ -1,4 +1,4 @@
-"""Templatetafs for the ``cmsplugin_blog_categories`` app."""
+"""Templatetags for the ``cmsplugin_blog_categories`` app."""
 from django import template
 from django.db.models import Count
 

@@ -16,6 +16,7 @@ South==0.7.6
 # ==============================================================
 # Packages needed for running the tests. Needed by contributors.
 # ==============================================================
+django-libs==0.14.1
 Fabric
 mock
 django-nose
