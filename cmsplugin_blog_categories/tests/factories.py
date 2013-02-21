@@ -3,8 +3,9 @@ Utilities for creating test objects related to the
 ``cmsplugin_blog_categories`` app.
 
 """
-from cmsplugin_blog.models import Entry, EntryTitle
 import factory
+
+from cmsplugin_blog.models import Entry
 
 from cmsplugin_blog_categories import models
 
@@ -13,7 +14,7 @@ class CategoryFactory(factory.Factory):
     """Factory for the ``Category`` model."""
     FACTORY_FOR = models.Category
 
-    slug = factory.LazyAttribute(lambda a: 'category-{0}'.format(a))
+    slug = factory.Sequence(lambda n: 'category-{0}'.format(n))
 
 
 class CategoryTitleFactoryBase(factory.Factory):
@@ -26,7 +27,7 @@ class CategoryTitleFactoryBase(factory.Factory):
 class CategoryTitleENFactory(CategoryTitleFactoryBase):
     """Factory for english ``CategoryTitle`` objects."""
     title = 'Category Title'
-    language = 'en-us'
+    language = 'en'
 
 
 class CategoryTitleCNFactory(CategoryTitleFactoryBase):
@@ -47,13 +48,6 @@ class EntryFactory(factory.Factory):
     FACTORY_FOR = Entry
 
     is_published = True
-
-
-class EntryTitleFactory(factory.Factory):
-    """Base factory for factories for ``EntryTitle`` models."""
-    FACTORY_FOR = EntryTitle
-
-    entry = factory.SubFactory(EntryFactory)
 
 
 class EntryCategoryFactory(factory.Factory):

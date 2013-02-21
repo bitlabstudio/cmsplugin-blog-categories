@@ -88,7 +88,8 @@ COVERAGE_REPORT_HTML_OUTPUT_DIR = os.path.join(
 
 COVERAGE_MODULE_EXCLUDES = EXTERNAL_APPS + [
     'tests$', 'settings$', 'urls$', 'locale$',
-    'migrations', 'fixtures', 'admin$', 'django_extensions',
+    'migrations', 'fixtures', 'admin$', 'django_extensions', 'cms$',
+    'cmsplugin_blog$',
 ]
 
 MIDDLEWARE_CLASSES = [

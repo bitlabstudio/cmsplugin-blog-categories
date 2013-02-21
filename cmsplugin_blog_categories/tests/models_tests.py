@@ -2,11 +2,9 @@
 from django.test import TestCase
 
 from cmsplugin_blog_categories.tests.factories import (
-    CategoryFactory,
     CategoryTitleCNFactory,
     CategoryTitleENFactory,
     EntryCategoryFactory,
-    EntryFactory,
 )
 
 
@@ -15,15 +13,24 @@ class CategoryTestCase(TestCase):
     longMessage = True
 
     def setUp(self):
-        self.obj = CategoryFactory()
+        self.category_title = CategoryTitleENFactory()
+        self.category = self.category_title.category
 
     def test_model(self):
-        self.assertTrue(self.obj.pk)
+        """Should be able to instantiate and save the model."""
+        self.assertTrue(self.category.pk)
 
     def test_get_title(self):
-        self.assertEqual(self.obj.get_title(), 'None')
-        CategoryTitleENFactory(category=self.obj)
-        self.assertEqual(self.obj.get_title(), 'Category Title')
+        """
+        Should return the title in the best available translation.
+
+        Note: We assume that there will always be at least one translation
+        for the objet, since it is impossible to save a Category in the admin
+        without also creating the first CategoryTitle for that object.
+
+        """
+        result = self.category.get_title()
+        self.assertEqual(result, 'Category Title')
 
 
 class CategoryTitleTestCase(TestCase):
@@ -37,17 +44,6 @@ class CategoryTitleTestCase(TestCase):
     def test_model(self):
         self.assertTrue(self.obj_en.pk)
         self.assertTrue(self.obj_cn.pk)
-
-
-class EntryTestCase(TestCase):
-    """Tests for the ``Entry`` model class."""
-    longMessage = True
-
-    def setUp(self):
-        self.obj = EntryFactory()
-
-    def test_model(self):
-        self.assertTrue(self.obj.pk)
 
 
 class EntryCategoryTestCase(TestCase):
