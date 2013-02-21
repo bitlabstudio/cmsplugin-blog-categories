@@ -1,5 +1,7 @@
 === ongoing ===
 
+=== 0.3.2 ===
+
 - Added get_translation method to the Category model
 - Make admin more robust when objects don't have translations for the current
   language.
