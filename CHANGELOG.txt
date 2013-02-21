@@ -1,5 +1,9 @@
 === ongoing ===
 
+- Added get_translation method to the Category model
+- Make admin more robust when objects don't have translations for the current
+  language.
+
 === 0.3.1 ===
 
 - Added better way to extend the EntryAdmin

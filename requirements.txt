@@ -24,3 +24,5 @@ coverage
 django-coverage
 -e git+git://github.com/jcrocholl/pep8.git#egg=pep8
 -e git+git://github.com/bmcustodio/flake8.git#egg=flake8
+ipython
+ipdb

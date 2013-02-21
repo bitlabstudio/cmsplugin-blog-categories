@@ -4,7 +4,7 @@ from django.utils.translation import get_language
 from django.utils.translation import ugettext_lazy as _
 
 from cms.models import CMSPlugin
-from simple_translation.utils import get_translation_queryset
+from simple_translation.utils import get_preferred_translation_from_lang
 
 
 class Category(models.Model):
@@ -30,12 +30,11 @@ class Category(models.Model):
         return ('blog_archive_category', (), {'category': self.slug, })
 
     def get_title(self):
+        return self.get_translation().title
+
+    def get_translation(self):
         lang = get_language()
-        try:
-            return get_translation_queryset(self).filter(
-                language=lang)[0].title
-        except IndexError:
-            return 'None'
+        return get_preferred_translation_from_lang(self, lang)
 
 
 class CategoryTitle(models.Model):
@@ -56,6 +55,7 @@ class EntryCategory(models.Model):
         related_name='categories',
         verbose_name=_('Entry'),
     )
+
     category = models.ForeignKey(
         Category,
         related_name='entry_categories',
