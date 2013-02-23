@@ -1,5 +1,7 @@
 === ongoing ===
 
+=== 0.4 ===
+
 - Fixed and centralized the way we get entries for a category. Added
   get_entries method to Category model.
 
