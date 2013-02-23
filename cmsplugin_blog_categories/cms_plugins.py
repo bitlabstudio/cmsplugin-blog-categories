@@ -13,9 +13,7 @@ class CMSCategoryPlugin(CMSPluginBase):
     render_template = 'cmsplugin_blog_categories/category_plugin.html'
 
     def render(self, context, instance, placeholder):
-        entries = [category.entry for category
-                   in instance.category.entry_categories.all()
-                   if category.entry.is_published]
+        entries = instance.category.get_entries()
         context.update({
             'category': instance.category,
             'category_entries': entries,

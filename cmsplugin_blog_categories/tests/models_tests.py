@@ -20,6 +20,12 @@ class CategoryTestCase(TestCase):
         """Should be able to instantiate and save the model."""
         self.assertTrue(self.category.pk)
 
+    def test_get_entries(self):
+        """Should return all entries that have this category."""
+        ec = EntryCategoryFactory()
+        result = ec.category.get_entries()
+        self.assertEqual(result, [ec.entry, ])
+
     def test_get_title(self):
         """
         Should return the title in the best available translation.
