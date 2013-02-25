@@ -1,4 +1,6 @@
 """Models for the ``cmsplugin_blog_categories`` app."""
+from django.conf import settings
+from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils import timezone
 from django.utils.translation import get_language
@@ -34,9 +36,14 @@ class Category(models.Model):
         qs = qs.order_by('-entry__pub_date')
         return [item.entry for item in qs]
 
-    @models.permalink
     def get_absolute_url(self):
-        return ('blog_archive_category', (), {'category': self.slug, })
+        url = reverse('blog_archive_category', kwargs={
+            'category': self.slug, })
+        lang = None
+        if 'simple_translation.middleware.MultilingualGenericsMiddleware' in \
+                settings.MIDDLEWARE_CLASSES:
+            lang = '/{0}'.format(get_language())
+        return '{0}{1}'.format(lang, url)
 
     def get_title(self):
         return self.get_translation().title
