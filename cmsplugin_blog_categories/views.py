@@ -1,9 +1,7 @@
 """Views of the ``cmsplugin_blog_categories`` app."""
 from django.views.generic import ListView
-from django.utils import timezone
 
-from cmsplugin_blog.models import Entry
-from cmsplugin_blog_categories.models import EntryCategory, Category
+from cmsplugin_blog_categories.models import Category
 
 
 class CategoryListView(ListView):

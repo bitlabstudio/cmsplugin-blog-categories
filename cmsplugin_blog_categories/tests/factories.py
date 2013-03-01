@@ -5,8 +5,6 @@ Utilities for creating test objects related to the
 """
 import factory
 
-from django.utils import timezone
-
 from cmsplugin_blog.models import Entry
 
 from cmsplugin_blog_categories import models

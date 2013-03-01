@@ -31,7 +31,8 @@ class Category(models.Model):
     def get_entries(self):
         """Returns the entries for this category."""
         qs = EntryCategory.objects.select_related()
-        qs = qs.filter(category=self, entry__is_published=True,
+        qs = qs.filter(
+            category=self, entry__is_published=True,
             entry__pub_date__lte=timezone.now())
         qs = qs.order_by('-entry__pub_date')
         return [item.entry for item in qs]
