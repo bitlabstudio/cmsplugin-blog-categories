@@ -40,11 +40,11 @@ class Category(models.Model):
     def get_absolute_url(self):
         url = reverse('blog_archive_category', kwargs={
             'category': self.slug, })
-        lang = None
         if 'simple_translation.middleware.MultilingualGenericsMiddleware' in \
                 settings.MIDDLEWARE_CLASSES:
             lang = '/{0}'.format(get_language())
-        return '{0}{1}'.format(lang, url)
+            return '{0}{1}'.format(lang, url)
+        return '{0}'.format(url)
 
     def get_title(self):
         return self.get_translation().title

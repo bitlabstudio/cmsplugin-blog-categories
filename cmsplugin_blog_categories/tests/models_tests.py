@@ -1,5 +1,7 @@
 """Tests for models of the ``cmsplugin_blog_categories``` application."""
+from django.conf import settings
 from django.test import TestCase
+from django.test.utils import override_settings
 
 from cmsplugin_blog_categories.tests.factories import (
     CategoryTitleCNFactory,
@@ -37,6 +39,19 @@ class CategoryTestCase(TestCase):
         """
         result = self.category.get_title()
         self.assertEqual(result, 'Category Title')
+
+    def test_get_absolute_url_with_middleware(self):
+        # If the multilingual middleware is added, add the language prefix
+        self.assertEqual(self.category.get_absolute_url(),
+                         '/{0}/blog/category/{1}/'.format(
+                             settings.LANGUAGE_CODE, self.category.slug))
+
+    @override_settings(MIDDLEWARE_CLASSES=[])
+    def test_get_absolute_url_without_middleware(self):
+        # If the multilingual middleware is disabled, only the prefix should be
+        # removed
+        self.assertEqual(self.category.get_absolute_url(),
+                         '/blog/category/{0}/'.format(self.category.slug))
 
 
 class CategoryTitleTestCase(TestCase):

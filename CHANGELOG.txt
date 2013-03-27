@@ -1,5 +1,10 @@
 === ongoing ===
 
+=== 0.5.1 ===
+
+- Fixed get_absolute_url. If the multilingual middleware isn't used it had a
+  wrong output, because even ``False`` variables were put into url parts.
+
 === 0.5 ===
 
 - get_absolute_url now returns the language namespace (i.e. `/en/`). This
