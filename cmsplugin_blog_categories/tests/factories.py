@@ -40,8 +40,6 @@ class CategoryPluginFactory(factory.Factory):
     """Base factory for factories for ``CategoryPlugin`` models."""
     FACTORY_FOR = models.CategoryPlugin
 
-    category = factory.SubFactory(CategoryFactory)
-
 
 class EntryFactory(factory.Factory):
     """Base factory for factories for ``Entry`` models."""

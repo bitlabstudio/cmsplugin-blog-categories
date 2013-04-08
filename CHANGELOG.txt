@@ -1,5 +1,9 @@
 === ongoing ===
 
+=== 0.5.2 ===
+
+- Allow many to many relations for plugin categories
+
 === 0.5.1 ===
 
 - Fixed get_absolute_url. If the multilingual middleware isn't used it had a

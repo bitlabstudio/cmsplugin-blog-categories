@@ -1,8 +1,9 @@
 """Tests for models of the ``cmsplugin_blog_categories``` application."""
 from django.test import TestCase
 
-from cmsplugin_blog_categories.cms_plugins import CMSCategoryPlugin
-from cmsplugin_blog_categories.tests.factories import CategoryPluginFactory
+from ..cms_plugins import CMSCategoryPlugin
+from ..models import Category
+from .factories import CategoryTitleENFactory, CategoryPluginFactory
 
 
 class CMSCategoryPluginTestCase(TestCase):
@@ -11,11 +12,12 @@ class CMSCategoryPluginTestCase(TestCase):
 
     def setUp(self):
         self.plugin = CategoryPluginFactory()
+        self.title = CategoryTitleENFactory()
+        self.plugin.categories.add(self.title.category)
         self.cmsplugin = CMSCategoryPlugin()
 
     def test_render(self):
-        self.assertEqual(
-            self.cmsplugin.render(context={}, instance=self.plugin,
-                                  placeholder=None),
-            {'category': self.plugin.category, 'category_entries': [],
-             'placeholder': None})
+        context = self.cmsplugin.render(context={}, instance=self.plugin,
+                                        placeholder=None)
+        self.assertEqual(context['categories'][0], Category.objects.get(
+            pk=self.title.category.pk))

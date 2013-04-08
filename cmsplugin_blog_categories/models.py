@@ -84,8 +84,8 @@ class EntryCategory(models.Model):
 
 
 class CategoryPlugin(CMSPlugin):
-    """Plugin, which renders entries belonging to one category."""
-    category = models.ForeignKey(
+    """Plugin, which renders entries belonging to one or more category."""
+    categories = models.ManyToManyField(
         Category,
         verbose_name=_('Category'),
     )
