@@ -12,7 +12,7 @@ from cmsplugin_blog_categories.models import Category, EntryCategory
 
 class EntryCategoryInline(admin.TabularInline):
     model = EntryCategory
-    max_num = 1
+    extra = 1
 
 
 class EntryCategoryAdmin(admin.ModelAdmin):

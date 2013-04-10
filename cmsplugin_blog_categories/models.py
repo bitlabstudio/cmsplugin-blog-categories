@@ -79,9 +79,6 @@ class EntryCategory(models.Model):
         verbose_name=_('Category'),
     )
 
-    class Meta:
-        unique_together = ('entry', 'category', )
-
 
 class CategoryPlugin(CMSPlugin):
     """Plugin, which renders entries belonging to one or more category."""
