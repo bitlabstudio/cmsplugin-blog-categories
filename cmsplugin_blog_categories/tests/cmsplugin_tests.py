@@ -2,7 +2,6 @@
 from django.test import TestCase
 
 from ..cms_plugins import CMSCategoryPlugin
-from ..models import Category
 from .factories import CategoryTitleENFactory, CategoryPluginFactory
 
 
@@ -19,5 +18,4 @@ class CMSCategoryPluginTestCase(TestCase):
     def test_render(self):
         context = self.cmsplugin.render(context={}, instance=self.plugin,
                                         placeholder=None)
-        self.assertEqual(context['categories'][0], Category.objects.get(
-            pk=self.title.category.pk))
+        self.assertEqual(context['entries'], [])
