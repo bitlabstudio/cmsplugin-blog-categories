@@ -1,5 +1,7 @@
 === ongoing ===
 
+=== 0.6 ===
+
 - Allowing multiple categories per entry.
 
 === 0.5.2 ===
