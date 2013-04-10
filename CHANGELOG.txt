@@ -1,5 +1,7 @@
 === ongoing ===
 
+- Allowing multiple categories per entry.
+
 === 0.5.2 ===
 
 - Allow many to many relations for plugin categories
