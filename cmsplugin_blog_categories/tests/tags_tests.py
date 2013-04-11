@@ -23,7 +23,7 @@ class GetCategoryTestCase(TestCase):
         self.assertFalse(tags.get_category())
         self.assertFalse(tags.get_category(self.entry))
         self.assertEqual(tags.get_category(self.category.entry),
-                         self.category.category)
+                         [self.category.category])
 
 
 class RenderCategoryLinksTestCase(TestCase):
