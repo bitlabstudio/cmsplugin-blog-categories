@@ -81,8 +81,21 @@ class EntryCategory(models.Model):
 
 
 class CategoryPlugin(CMSPlugin):
-    """Plugin, which renders entries belonging to one or more category."""
+    """
+    Plugin, which renders entries belonging to one or more category.
+
+    :categories: ...
+    :template_argument: Char which is place within templates as True, if you
+      want to alter a template.
+
+    """
     categories = models.ManyToManyField(
         Category,
         verbose_name=_('Category'),
+    )
+
+    template_argument = models.CharField(
+        max_length=20,
+        verbose_name=_('Template Argument'),
+        blank=True,
     )

@@ -21,6 +21,8 @@ class CMSCategoryPlugin(CMSPluginBase):
             'entries': [item.entry for item in qs],
             'placeholder': placeholder,
         })
+        if instance.template_argument:
+            context.update({'{0}'.format(instance.template_argument): True, })
         return context
 
 plugin_pool.register_plugin(CMSCategoryPlugin)
