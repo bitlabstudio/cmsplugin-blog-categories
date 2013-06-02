@@ -33,3 +33,9 @@ class GetEntriesAjaxViewTestCase(ViewTestMixin, TestCase):
 
     def test_view(self):
         self.should_be_callable_when_anonymous()
+
+    def test_view_with_count(self):
+        url = self.get_url()
+        url = url + '?count=1'
+        resp = self.client.get(url)
+        self.assertEqual(resp.status_code, 200)

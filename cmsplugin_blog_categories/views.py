@@ -34,8 +34,12 @@ class GetEntriesAjaxView(ListView):
                 slug=request.GET.get('category'))
         else:
             self.category = None
+        self.count = request.GET.get('count', None)
         return super(GetEntriesAjaxView, self).dispatch(
             request, *args, **kwargs)
 
     def get_queryset(self):
-        return Entry.published.all()
+        qs = Entry.published.all()
+        if self.count:
+            return qs[:self.count]
+        return qs
