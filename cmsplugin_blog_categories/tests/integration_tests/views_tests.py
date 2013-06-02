@@ -24,3 +24,12 @@ class CategoryListViewTestCase(ViewTestMixin, TestCase):
 
     def test_view(self):
         self.should_be_callable_when_anonymous()
+
+
+class GetEntriesAjaxViewTestCase(ViewTestMixin, TestCase):
+    """Tests for the ``GetEntriesAjaxView`` view class."""
+    def get_view_name(self):
+        return 'blog_get_entries'
+
+    def test_view(self):
+        self.should_be_callable_when_anonymous()

@@ -1,5 +1,7 @@
 === ongoing ===
 
+ - Added GetEntriesAjaxView to retrieve latest blog entries from ajax calls
+
 === 0.6 ===
 
 - Allowing multiple categories per entry.
