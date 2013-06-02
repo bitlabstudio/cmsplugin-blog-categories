@@ -34,7 +34,10 @@ class GetEntriesAjaxView(ListView):
                 slug=request.GET.get('category'))
         else:
             self.category = None
-        self.count = request.GET.get('count', None)
+        if request.GET.get('count'):
+            self.count = int(request.GET.get('count'))
+        else:
+            self.count = None
         return super(GetEntriesAjaxView, self).dispatch(
             request, *args, **kwargs)
 
