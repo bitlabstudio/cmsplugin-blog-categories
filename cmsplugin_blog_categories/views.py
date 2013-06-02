@@ -30,8 +30,7 @@ class GetEntriesAjaxView(ListView):
 
     def dispatch(self, request, *args, **kwargs):
         if request.GET.get('category'):
-            self.category = Category.objects.get(
-                slug=request.GET.get('category'))
+            self.category = request.GET.get('category')
         else:
             self.category = None
         if request.GET.get('count'):
@@ -43,6 +42,8 @@ class GetEntriesAjaxView(ListView):
 
     def get_queryset(self):
         qs = Entry.published.all()
+        if self.category:
+            qs = qs.filter(categories__category__slug=self.category)
         if self.count:
             return qs[:self.count]
         return qs
