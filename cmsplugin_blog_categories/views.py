@@ -1,4 +1,5 @@
 """Views of the ``cmsplugin_blog_categories`` app."""
+from django.db.models import Q
 from django.views.generic import ListView
 
 from cmsplugin_blog.models import Entry
@@ -43,7 +44,9 @@ class GetEntriesAjaxView(ListView):
     def get_queryset(self):
         qs = Entry.published.all()
         if self.category:
-            qs = qs.filter(categories__category__slug=self.category)
+            qs = qs.filter(
+                Q(categories__category__slug=self.category) |
+                Q(categories__category__parent__slug=self.category))
         if self.count:
             return qs[:self.count]
         return qs

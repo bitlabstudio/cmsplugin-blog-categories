@@ -39,3 +39,10 @@ class GetEntriesAjaxViewTestCase(ViewTestMixin, TestCase):
         url = url + '?count=1'
         resp = self.client.get(url)
         self.assertEqual(resp.status_code, 200)
+
+    def test_view_with_category(self):
+        cat_title = CategoryTitleENFactory()
+        url = self.get_url()
+        url = url + '?category={0}'.format(cat_title.category.slug)
+        resp = self.client.get(url)
+        self.assertEqual(resp.status_code, 200)

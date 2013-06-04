@@ -14,8 +14,10 @@ class Category(models.Model):
     """
     A blog ``Entry`` can belong to one category.
 
+    :creation_date: Date when this category was created.
     :slug: The slug for this category. The slug will be the same for all
       languages.
+    :parent: Allows you to build hierarchies of categories.
 
     """
     creation_date = models.DateTimeField(auto_now_add=True)
@@ -23,6 +25,12 @@ class Category(models.Model):
     slug = models.SlugField(
         max_length=512,
         verbose_name=_('Slug'),
+    )
+
+    parent = models.ForeignKey(
+        'cmsplugin_blog_categories.Category',
+        verbose_name=_('Parent'),
+        null=True, blank=True,
     )
 
     def __unicode__(self):

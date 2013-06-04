@@ -1,6 +1,8 @@
 === ongoing ===
 
  - Added GetEntriesAjaxView to retrieve latest blog entries from ajax calls
+ - Added parent field to Category model - this allows to build hierarchies
+   of categories
 
 === 0.6 ===
 
