@@ -2,6 +2,7 @@
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.db import models
+from django.db.models import Q
 from django.utils import timezone
 from django.utils.translation import get_language
 from django.utils.translation import ugettext_lazy as _
@@ -40,8 +41,10 @@ class Category(models.Model):
         """Returns the entries for this category."""
         qs = EntryCategory.objects.select_related()
         qs = qs.filter(
-            category=self, entry__is_published=True,
-            entry__pub_date__lte=timezone.now())
+            Q(category=self) | Q(category__parent=self),
+            entry__is_published=True,
+            entry__pub_date__lte=timezone.now(),
+        )
         qs = qs.order_by('-entry__pub_date')
         return [item.entry for item in qs]
 
